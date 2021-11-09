@@ -55,6 +55,3 @@ This document explains how to use this code (build, test and deploy), locally wi
 ### In netbeans it is much easier
 - Right click project name -> new -> persistence -> Entity classes From Database -> choose database connection from list -> add the tables you need -> Finish
 
-
-
->>>>>>> 3b7fb84 (initial commit)
