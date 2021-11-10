@@ -8,13 +8,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
 //import errorhandling.RenameMeNotFoundException;
+import interfaces.IFacade;
 import utils.EMF_Creator;
 
 /**
  *
  * Rename Class to a relevant name Add add relevant facade methods
  */
-public class FacadeExample {
+public class FacadeExample implements IFacade<RenameMeDTO> {
 
     private static FacadeExample instance;
     private static EntityManagerFactory emf;
@@ -59,7 +60,7 @@ public class FacadeExample {
 //            throw new RenameMeNotFoundException("The RenameMe entity with ID: "+id+" Was not found");
         return new RenameMeDTO(rm);
     }
-    
+
     //TODO Remove/Change this before use
     public long getRenameMeCount(){
         EntityManager em = getEntityManager();
@@ -77,11 +78,20 @@ public class FacadeExample {
         List<RenameMe> rms = query.getResultList();
         return RenameMeDTO.getDtos(rms);
     }
-    
+
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
         FacadeExample fe = getFacadeExample(emf);
         fe.getAll().forEach(dto->System.out.println(dto));
     }
 
+    @Override
+    public long getCount() {
+        return 0;
+    }
+
+    @Override
+    public List<RenameMeDTO> getSpecific(String valueType, String value) {
+        return null;
+    }
 }
