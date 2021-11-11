@@ -1,7 +1,5 @@
 package rest;
 
-import com.google.gson.Gson;
-
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.Context;
@@ -15,12 +13,8 @@ import javax.ws.rs.core.SecurityContext;
 import utils.EMF_Creator;
 import utils.HttpUtils;
 
-/**
- * @author lam@cphbusiness.dk
- */
 @Path("info")
 public class DemoResource {
-
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     @Context
     private UriInfo context;
@@ -30,12 +24,17 @@ public class DemoResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getInfoForAll() {
+    public String getFiveAPI() {
         try {
             String result = HttpUtils.fetchData("https://api.chucknorris.io/jokes/random");
             result += "\n";
             result += HttpUtils.fetchData("https://icanhazdadjoke.com");
             result += "\n";
+            result += HttpUtils.fetchData("https://api.jokes.one");
+            result += "\n";
+            result += HttpUtils.fetchData("https://theaxolotlapi.netlify.app/");
+            result += "\n";
+            result += HttpUtils.fetchData("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all");
 
             return result;
         } catch (Exception e) {
@@ -49,8 +48,8 @@ public class DemoResource {
     @Path("user")
     @RolesAllowed("user")
     public String getFromUser() {
-        String thisuser = securityContext.getUserPrincipal().getName();
-        return "{\"msg\": \"Hello to User: " + thisuser + "\"}";
+        String thisUser = securityContext.getUserPrincipal().getName();
+        return "{\"msg\": \"Hello to User: " + thisUser + "\"}";
     }
 
     @GET
@@ -58,7 +57,7 @@ public class DemoResource {
     @Path("admin")
     @RolesAllowed("admin")
     public String getFromAdmin() {
-        String thisuser = securityContext.getUserPrincipal().getName();
-        return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
+        String thisUser = securityContext.getUserPrincipal().getName();
+        return "{\"msg\": \"Hello to (admin) User: " + thisUser + "\"}";
     }
 }
