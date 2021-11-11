@@ -16,11 +16,11 @@ public class HttpUtils {
         Scanner scan = new Scanner(con.getInputStream());
 
         String jsonString = null;
-        if(scan.hasNext()){
+        if (scan.hasNext()) {
             jsonString = scan.nextLine();
         }
         scan.close();
-
+        System.out.println("\n" + jsonString + "\n");
         return jsonString;
     }
 }
