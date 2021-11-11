@@ -10,8 +10,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
+import com.google.gson.Gson;
+import dtos.API_TestDTO.*;
 import utils.EMF_Creator;
 import utils.HttpUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("info")
 public class DemoResource {
@@ -23,20 +28,23 @@ public class DemoResource {
     SecurityContext securityContext;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getFiveAPI() {
+        Gson gson = new Gson();
         try {
-            String result = HttpUtils.fetchData("https://api.chucknorris.io/jokes/random");
-            result += "\n";
-            result += HttpUtils.fetchData("https://icanhazdadjoke.com");
-            result += "\n";
-            result += HttpUtils.fetchData("https://api.jokes.one");
-            result += "\n";
-            result += HttpUtils.fetchData("https://theaxolotlapi.netlify.app/");
-            result += "\n";
-            result += HttpUtils.fetchData("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs/all");
+            ChuckDTO chuckDTO = gson.fromJson(HttpUtils.fetchData("https://api.chucknorris.io/jokes/random"), ChuckDTO.class);
 
-            return result;
+            DadDTO dadDTO = gson.fromJson(HttpUtils.fetchData("https://icanhazdadjoke.com"), DadDTO.class);
+
+            xkcdDTO xkcdDTO = gson.fromJson(HttpUtils.fetchData("https://xkcd.com/info.0.json"), xkcdDTO.class);
+
+            List<Object> result = new ArrayList<>();
+            result.add(chuckDTO);
+            result.add(dadDTO);
+            result.add(xkcdDTO);
+
+            System.out.println(gson.toJson(result));
+            return gson.toJson(result);
         } catch (Exception e) {
             return "Failed";
         }
