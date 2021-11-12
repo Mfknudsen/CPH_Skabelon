@@ -43,7 +43,6 @@ public class DemoResource {
             result.add(dadDTO);
             result.add(xkcdDTO);
 
-            System.out.println(gson.toJson(result));
             return gson.toJson(result);
         } catch (Exception e) {
             return "Failed";
