@@ -1,57 +1,34 @@
-*This project is meant as start code for projects and exercises given in Flow-1+2 (+3 using the security-branch) at http://cphbusiness.dk in the Study Program "AP degree in Computer Science"*
+## CA 2 Skabelon
 
-*Projects which are expected to use this start-code are projects that require all, or most of the following technologies:*
- - *JPA and REST*
-- *Testing, including database test*
-- *Testing, including tests of REST-API's*
-- *CI and CONTINUOUS DELIVERY*
+### Preconditions:
+In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines
 
-## Flow 2 week 1
+### How To Use:
+Download the Skabelon.
 
-### Preconditions
-*In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines* 
+Rename All Instances of the word Skabelon to the name of the active project.
 
-### Getting Started
+Under mavenworkflow.yml uncomment line 54 and 57. This will allow the project to be deployed through GitHub Actions.
 
-This document explains how to use this code (build, test and deploy), locally with maven, and remotely with maven controlled by Github actions
- - [How to use](https://docs.google.com/document/d/1rymrRWF3VVR7ujo3k3sSGD_27q73meGeiMYtmUtYt6c/edit?usp=sharing)
+Under pom.xml uncomment line 19 and replace the "rename.me" to your droplet.
+Also replace the database name on line 23 to your database.
 
-### JPA snippets
+Under persistence.xml replace "starcode" on line 20 with your database for final use and on line 38 replace "startcode_test" with your test database.
+Replace also the user and password if needed.
 
-### Setup in Intellij
-- open view->too windows->persistence
-- open the Database tab and create a new data source (remember to point to a database event though this is already written in the persistence unit. This is necessary in order to use the JPQL console)
-- in the persistence window right click the pu or an entity and choose "console"
-- write a jpql query in the console and execute it.
-### In netbeans it is much simpler
-- just right click the pu and choose: "Run JPQL query"
+####Rest:
+When making new Rest classes remember to place them in ApplicationConfig.java under "Insert new Rest Classes Here".
 
-### Create model in workbench (cannot be done from Intellij - No model designer yet)
-- file-> new model
-- dobbelclick the mydb icon and change to relevant database (create one first if needed)
-- click the Add Diagram icon
-- click the table icon in the left side panel and click in the squared area to insert new table
-- dobbelclick the new table and change name and add columns (remember to add a check mark in 'ai' for the primary key)
-- do the process again to add a second table
-- now in the panel choose the 'non identifying relationship' on to many
-- click first on the child table (the one that should hold the foreign key) and then on the parent. A new relationship was now added.
-- When done with designing - goto top menu: Database->forward engineer.
-  - Check that all settings looks right and click continue
-  - click continue again (no changes needed here)
-  - Make sure the 'Export mysql table objects' is checked and Show filter to make sure that all your tables are in the 'objects to process' window -> click continue
-  - Verify that the generated script looks right -> click continue
-  - click close and open the database to see the new tables, that was just created.
+Use DemoResource.java in the rest package for how to setup endpoints.
 
-### create entities from database in Intellij (Persistence mappings)
-- From inside the Persistence window:
-- Right-click a persistence unit, point to Generate Persistence Mapping and select By Database Schema.
-- Select the 
-  - data source 
-  - package
-  - tick tables to include
-  - open tables to see columns and add the ones with mapped type: Collection<SomeEntity> and SomeEntity
-  - click OK.
+####Entities:
+When making new Entities classes remember to place them in persistence.xml under "Insert new Entities Here".
 
-### In netbeans it is much easier
-- Right click project name -> new -> persistence -> Entity classes From Database -> choose database connection from list -> add the tables you need -> Finish
+Use RenameMe.java in the entities package for how to setup entities.
 
+####DTOs
+
+####Facades:
+Remember to use IFacade with the intended DTO when making new Facades.
+
+Use FacadeExample in the package facades for how to setup facades.

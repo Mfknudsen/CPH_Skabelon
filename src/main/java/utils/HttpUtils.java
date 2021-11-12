@@ -20,7 +20,7 @@ public class HttpUtils {
             jsonString = scan.nextLine();
         }
         scan.close();
-        System.out.println("\n" + jsonString + "\n");
+
         return jsonString;
     }
 }
