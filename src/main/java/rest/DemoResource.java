@@ -29,8 +29,8 @@ public class DemoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String get(){
-        return "Hello anonymous";
+    public String get() {
+        return "{\"msg\": \"Hello anonymous\"}";
     }
 
     @GET
