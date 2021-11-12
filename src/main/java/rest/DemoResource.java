@@ -29,6 +29,13 @@ public class DemoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    public String get(){
+        return "Hello anonymous";
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("remote")
     public String getFiveAPI() {
         Gson gson = new Gson();
         try {

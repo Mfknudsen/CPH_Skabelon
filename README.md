@@ -27,6 +27,7 @@ When making new Entities classes remember to place them in persistence.xml under
 Use RenameMe.java in the entities package for how to setup entities.
 
 ####DTOs
+Use RenameMeDTO in the dtos package for hot to setup dtos.
 
 ####Facades:
 Remember to use IFacade with the intended DTO when making new Facades.
